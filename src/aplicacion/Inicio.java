@@ -6,14 +6,15 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import java.util.Calendar;
+import javax.swing.ImageIcon;
 
 public class Inicio extends javax.swing.JFrame {
     
-    public static String database= "database";
-    public static String usuario="root";
-    public static String cont="root";
+    public static final String DATABASE="database";
+    public static final String USUARIO="root";
+    public static final String CONTRA="root";
+    public static final String URL= "jdbc:mysql://localhost/"+DATABASE;
     
-    public static String url= "jdbc:mysql://localhost/"+database+"";
     public static Connection conexion;
     public static Statement sentencia_ar;
     public static Statement sentencia_pr;
@@ -61,6 +62,9 @@ public class Inicio extends javax.swing.JFrame {
         CargarComboLocalidadProveedores();
         CargarConsultaRubros();
         this.setSize(1250, 650);
+        ImageIcon icono = new ImageIcon(Inicio.class.getResource("/img/logo.png"));
+        this.setIconImage(icono.getImage());
+        this.setTitle("Aplicacion de Stock");
         pnlProveedores.setVisible(false);
         pnlRubros.setVisible(false);
         pnlAumentos.setVisible(false);
@@ -69,7 +73,7 @@ public class Inicio extends javax.swing.JFrame {
     public static void PrepararBaseDeDatos(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection(url, usuario, cont);
+            conexion = DriverManager.getConnection(URL, USUARIO, CONTRA);
             if (conexion!=null){
                 System.out.println("Conexion Exitosa");}
         }
@@ -94,7 +98,7 @@ public class Inicio extends javax.swing.JFrame {
         try{
             int i=0;
             cboRubroA.removeAllItems();
-            ResRubro = sentencia_ar.executeQuery("SELECT * FROM "+database+".rubro ORDER BY rubro.id_rubro");
+            ResRubro = sentencia_ar.executeQuery("SELECT * FROM "+DATABASE+".rubro ORDER BY rubro.id_rubro");
             ResRubro.last();
             if (ResRubro.getRow()==0){
                 JOptionPane.showMessageDialog(null, "Debe cargar un rubro");
@@ -119,7 +123,7 @@ public class Inicio extends javax.swing.JFrame {
         try{
             int i=0;
             cboProveedorA.removeAllItems();
-            ResProveedor = sentencia_ar.executeQuery("SELECT * FROM "+database+".proveedor ORDER BY nombre_proveedor");
+            ResProveedor = sentencia_ar.executeQuery("SELECT * FROM "+DATABASE+".proveedor ORDER BY nombre_proveedor");
             ResProveedor.last();
             if (ResProveedor.getRow()==0){
                 JOptionPane.showMessageDialog(null, "Debe cargar un proveedor");
@@ -143,7 +147,7 @@ public class Inicio extends javax.swing.JFrame {
     
     public static void CargarConsultaArticulos(){
         try{
-            r_ar = sentencia_ar.executeQuery("SELECT articulo.id_articulo, articulo.nombre_articulo, articulo.precio_costo, articulo.precio_venta, articulo.fecha_actualizacion, articulo.rubro_id_rubro, articulo.proveedor_id_proveedor, articulo.codigo_articulo, proveedor.nombre_proveedor, rubro.nombre_rubro FROM "+database+".articulo, "+database+".proveedor, "+database+".rubro WHERE "+database+".articulo.rubro_id_rubro = "+database+".rubro.id_rubro AND "+database+".articulo.proveedor_id_proveedor = "+database+".proveedor.id_proveedor ORDER BY "+database+".articulo.id_articulo");
+            r_ar = sentencia_ar.executeQuery("SELECT articulo.id_articulo, articulo.nombre_articulo, articulo.precio_costo, articulo.precio_venta, articulo.fecha_actualizacion, articulo.rubro_id_rubro, articulo.proveedor_id_proveedor, articulo.codigo_articulo, proveedor.nombre_proveedor, rubro.nombre_rubro FROM "+DATABASE+".articulo, "+DATABASE+".proveedor, "+DATABASE+".rubro WHERE "+DATABASE+".articulo.rubro_id_rubro = "+DATABASE+".rubro.id_rubro AND "+DATABASE+".articulo.proveedor_id_proveedor = "+DATABASE+".proveedor.id_proveedor ORDER BY "+DATABASE+".articulo.id_articulo");
             r_ar.next();
             if (r_ar.isFirst()){
                 CargarDatosArticulos();
@@ -200,9 +204,9 @@ public class Inicio extends javax.swing.JFrame {
     }
     
     public static void BuscarUnRegistroArticulos (String id){
-        int i=1 ,j=1 , In;
+        int In;
         try{
-            r_ar = sentencia_ar.executeQuery("SELECT articulo.id_articulo, articulo.nombre_articulo, articulo.precio_costo, articulo.precio_venta, articulo.fecha_actualizacion, articulo.rubro_id_rubro, articulo.proveedor_id_proveedor, articulo.codigo_articulo, proveedor.nombre_proveedor, rubro.nombre_rubro FROM "+database+".articulo, "+database+".proveedor, "+database+".rubro WHERE "+database+".articulo.rubro_id_rubro = "+database+".rubro.id_rubro AND "+database+".articulo.proveedor_id_proveedor = "+database+".proveedor.id_proveedor ORDER BY "+database+".articulo.id_articulo");
+            r_ar = sentencia_ar.executeQuery("SELECT articulo.id_articulo, articulo.nombre_articulo, articulo.precio_costo, articulo.precio_venta, articulo.fecha_actualizacion, articulo.rubro_id_rubro, articulo.proveedor_id_proveedor, articulo.codigo_articulo, proveedor.nombre_proveedor, rubro.nombre_rubro FROM "+DATABASE+".articulo, "+DATABASE+".proveedor, "+DATABASE+".rubro WHERE "+DATABASE+".articulo.rubro_id_rubro = "+DATABASE+".rubro.id_rubro AND "+DATABASE+".articulo.proveedor_id_proveedor = "+DATABASE+".proveedor.id_proveedor ORDER BY "+DATABASE+".articulo.id_articulo");
             r_ar.beforeFirst();
             while(r_ar.next()){
                 if(r_ar.getString("id_articulo").equals(id)){
@@ -211,18 +215,12 @@ public class Inicio extends javax.swing.JFrame {
                 }
             }
             In = r_ar.getInt ("proveedor_id_proveedor");
-            while (In != prov_ar[i]){
-                i++;
-            }
-            cboProveedorA.setSelectedIndex(i);
+            
+            cboProveedorA.setSelectedIndex(In);
             
             In = r_ar.getInt ("rubro_id_rubro");
-            while (In != rub_ar[j]){
-                j++;
-            }
-            cboRubroA.setSelectedIndex(j);
-              
-            return;
+            
+            cboRubroA.setSelectedIndex(In);
         }
         catch (Exception e){
         System.out.println("error Buscar Un Registro Articulos: "+e);
@@ -232,7 +230,7 @@ public class Inicio extends javax.swing.JFrame {
     public static void BuscarCodigoArticulos(String codigo){
         int band=0;
         try{
-            r_ar = sentencia_ar.executeQuery("SELECT articulo.id_articulo, articulo.nombre_articulo, articulo.precio_costo, articulo.precio_venta, articulo.fecha_actualizacion, articulo.rubro_id_rubro, articulo.proveedor_id_proveedor, articulo.codigo_articulo, proveedor.nombre_proveedor, rubro.nombre_rubro FROM "+database+".articulo, "+database+".proveedor, "+database+".rubro WHERE "+database+".articulo.rubro_id_rubro = "+database+".rubro.id_rubro AND "+database+".articulo.proveedor_id_proveedor = "+database+".proveedor.id_proveedor ORDER BY "+database+".articulo.id_articulo");
+            r_ar = sentencia_ar.executeQuery("SELECT articulo.id_articulo, articulo.nombre_articulo, articulo.precio_costo, articulo.precio_venta, articulo.fecha_actualizacion, articulo.rubro_id_rubro, articulo.proveedor_id_proveedor, articulo.codigo_articulo, proveedor.nombre_proveedor, rubro.nombre_rubro FROM "+DATABASE+".articulo, "+DATABASE+".proveedor, "+DATABASE+".rubro WHERE "+DATABASE+".articulo.rubro_id_rubro = "+DATABASE+".rubro.id_rubro AND "+DATABASE+".articulo.proveedor_id_proveedor = "+DATABASE+".proveedor.id_proveedor ORDER BY "+DATABASE+".articulo.id_articulo");
             while(r_ar.next()){
                 if(r_ar.getString("codigo_articulo").equals(codigo)){
                     System.out.println(r_ar.getString("codigo_articulo"));
@@ -294,7 +292,7 @@ public class Inicio extends javax.swing.JFrame {
     
     public static void CargarConsultaProveedores(){
          try{
-             r_pr = sentencia_pr.executeQuery("SELECT proveedor.id_proveedor, proveedor.nombre_proveedor, proveedor.cuit_proveedor, proveedor.direccion_proveedor, proveedor.email_proveedor, proveedor.celular_proveedor,proveedor.localidad_id_localidad,localidad.nombre_localidad FROM "+database+".localidad, "+database+".proveedor WHERE "+database+".proveedor.localidad_id_localidad = "+database+".localidad.id_localidad ORDER BY proveedor.id_proveedor");
+             r_pr = sentencia_pr.executeQuery("SELECT proveedor.id_proveedor, proveedor.nombre_proveedor, proveedor.cuit_proveedor, proveedor.direccion_proveedor, proveedor.email_proveedor, proveedor.celular_proveedor,proveedor.localidad_id_localidad,localidad.nombre_localidad FROM "+DATABASE+".localidad, "+DATABASE+".proveedor WHERE "+DATABASE+".proveedor.localidad_id_localidad = "+DATABASE+".localidad.id_localidad ORDER BY proveedor.id_proveedor");
              r_pr.next();
              if (r_pr.isFirst()){
                  CargarDatosProveedores();
@@ -336,7 +334,7 @@ public class Inicio extends javax.swing.JFrame {
         try{
             int i=0;
             cboLocalidadP.removeAllItems();
-            ResProv = sentencia_pr.executeQuery("SELECT * FROM "+database+".localidad ORDER BY nombre_localidad");
+            ResProv = sentencia_pr.executeQuery("SELECT * FROM "+DATABASE+".localidad ORDER BY nombre_localidad");
             ResProv.last();
             if (ResProv.getRow()==0){
                 JOptionPane.showMessageDialog(null, "Debe cargar una Localidad");
@@ -363,7 +361,7 @@ public class Inicio extends javax.swing.JFrame {
     
     public static void BuscarUnRegistroRubros (String id){
         try{
-            r_ru = sentencia_ru.executeQuery("SELECT * FROM "+database+".rubro ORDER BY id_rubro");
+            r_ru = sentencia_ru.executeQuery("SELECT * FROM "+DATABASE+".rubro ORDER BY id_rubro");
             r_ru.beforeFirst();
             while(r_ru.next()){
                 if(r_ru.getString("id_rubro").equals(id)){
@@ -400,7 +398,7 @@ public class Inicio extends javax.swing.JFrame {
     
     public static void CargarConsultaRubros(){
         try{
-            r_ru = sentencia_ru.executeQuery("SELECT * FROM "+database+".rubro ORDER BY id_rubro");
+            r_ru = sentencia_ru.executeQuery("SELECT * FROM "+DATABASE+".rubro ORDER BY id_rubro");
             r_ru.next();
             if (r_ru.isFirst()){
                 CargarDatosRubros();
@@ -433,7 +431,7 @@ public class Inicio extends javax.swing.JFrame {
         try{
             int i = 0;
             cboSeleccionarRubroAu.removeAllItems();
-            ResRubPro = sentencia_au.executeQuery("SELECT * FROM "+database+".rubro ORDER BY rubro.id_rubro");
+            ResRubPro = sentencia_au.executeQuery("SELECT * FROM "+DATABASE+".rubro ORDER BY rubro.id_rubro");
             ResRubPro.last();
             if(ResRubPro.getRow()==0){
                 JOptionPane.showMessageDialog(null,"Debe cargar un Rubro");
@@ -456,7 +454,7 @@ public class Inicio extends javax.swing.JFrame {
         try{
             int i = 0;
             cboSeleccionarRubroAu.removeAllItems();
-            ResRubPro = sentencia_au.executeQuery("SELECT * FROM "+database+".proveedor ORDER BY proveedor.id_proveedor");
+            ResRubPro = sentencia_au.executeQuery("SELECT * FROM "+DATABASE+".proveedor ORDER BY proveedor.id_proveedor");
             ResRubPro.last();
             if(ResRubPro.getRow()==0){
                 JOptionPane.showMessageDialog(null,"Debe cargar un Proveedor");
@@ -477,7 +475,7 @@ public class Inicio extends javax.swing.JFrame {
     
     public static void CargarConsultaAumentoRubro(){
         try{
-            r_ru = sentencia_au.executeQuery("SELECT rubro.id_rubro, rubro.nombre_rubro FROM "+database+".rubro");
+            r_ru = sentencia_au.executeQuery("SELECT rubro.id_rubro, rubro.nombre_rubro FROM "+DATABASE+".rubro");
             r_ru.next();
         }
         catch(Exception e){
@@ -487,7 +485,7 @@ public class Inicio extends javax.swing.JFrame {
 
     public static void CargarConsultaAumentoProv(){
         try{
-            r_ru = sentencia_au.executeQuery("SELECT proveedor.id_proveedor, proveedor.nombre_proveedor FROM "+database+".proveedor");
+            r_ru = sentencia_au.executeQuery("SELECT proveedor.id_proveedor, proveedor.nombre_proveedor FROM "+DATABASE+".proveedor");
             r_ru.next();
         }
         catch(Exception e){
@@ -757,7 +755,7 @@ public class Inicio extends javax.swing.JFrame {
         lblVentana.setForeground(new java.awt.Color(255, 255, 255));
         lblVentana.setText("ARTICULOS");
 
-        btnCerrarA.setBackground(new java.awt.Color(255, 204, 25));
+        btnCerrarA.setBackground(new java.awt.Color(255, 255, 255));
         btnCerrarA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCerrarA.setForeground(new java.awt.Color(0, 51, 204));
         btnCerrarA.setText("Cerrar");
@@ -768,7 +766,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnBajaA.setBackground(new java.awt.Color(255, 204, 25));
+        btnBajaA.setBackground(new java.awt.Color(255, 255, 255));
         btnBajaA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnBajaA.setForeground(new java.awt.Color(0, 51, 204));
         btnBajaA.setText("-");
@@ -779,7 +777,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAltaA.setBackground(new java.awt.Color(255, 204, 25));
+        btnAltaA.setBackground(new java.awt.Color(255, 255, 255));
         btnAltaA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAltaA.setForeground(new java.awt.Color(0, 51, 204));
         btnAltaA.setText("+");
@@ -790,7 +788,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnBuscar1A.setBackground(new java.awt.Color(255, 204, 25));
+        btnBuscar1A.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscar1A.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnBuscar1A.setForeground(new java.awt.Color(0, 51, 204));
         btnBuscar1A.setText("Buscar");
@@ -801,7 +799,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnModificarA.setBackground(new java.awt.Color(255, 204, 25));
+        btnModificarA.setBackground(new java.awt.Color(255, 255, 255));
         btnModificarA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnModificarA.setForeground(new java.awt.Color(0, 51, 204));
         btnModificarA.setText("Modificar");
@@ -812,7 +810,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnUltimoA.setBackground(new java.awt.Color(255, 204, 25));
+        btnUltimoA.setBackground(new java.awt.Color(255, 255, 255));
         btnUltimoA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnUltimoA.setForeground(new java.awt.Color(0, 51, 204));
         btnUltimoA.setText(">>");
@@ -823,7 +821,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnSiguienteA.setBackground(new java.awt.Color(255, 204, 25));
+        btnSiguienteA.setBackground(new java.awt.Color(255, 255, 255));
         btnSiguienteA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnSiguienteA.setForeground(new java.awt.Color(0, 51, 204));
         btnSiguienteA.setText(">");
@@ -834,7 +832,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAnteriorA.setBackground(new java.awt.Color(255, 204, 25));
+        btnAnteriorA.setBackground(new java.awt.Color(255, 255, 255));
         btnAnteriorA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAnteriorA.setForeground(new java.awt.Color(0, 51, 204));
         btnAnteriorA.setText("<");
@@ -845,7 +843,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnPrimeroA.setBackground(new java.awt.Color(255, 204, 25));
+        btnPrimeroA.setBackground(new java.awt.Color(255, 255, 255));
         btnPrimeroA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnPrimeroA.setForeground(new java.awt.Color(0, 51, 204));
         btnPrimeroA.setText("<<");
@@ -1106,7 +1104,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        btnAceptarA.setBackground(new java.awt.Color(255, 204, 25));
+        btnAceptarA.setBackground(new java.awt.Color(255, 255, 255));
         btnAceptarA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAceptarA.setForeground(new java.awt.Color(0, 51, 204));
         btnAceptarA.setText("Aceptar");
@@ -1118,7 +1116,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnCancelarA.setBackground(new java.awt.Color(255, 204, 25));
+        btnCancelarA.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelarA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCancelarA.setForeground(new java.awt.Color(0, 51, 204));
         btnCancelarA.setText("Cancelar");
@@ -1175,7 +1173,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        btnCerrarP.setBackground(new java.awt.Color(255, 204, 25));
+        btnCerrarP.setBackground(new java.awt.Color(255, 255, 255));
         btnCerrarP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCerrarP.setForeground(new java.awt.Color(0, 51, 204));
         btnCerrarP.setText("Cerrar");
@@ -1186,7 +1184,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnEliminarP.setBackground(new java.awt.Color(255, 204, 25));
+        btnEliminarP.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminarP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnEliminarP.setForeground(new java.awt.Color(0, 51, 204));
         btnEliminarP.setText("-");
@@ -1197,7 +1195,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAltaP.setBackground(new java.awt.Color(255, 204, 25));
+        btnAltaP.setBackground(new java.awt.Color(255, 255, 255));
         btnAltaP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAltaP.setForeground(new java.awt.Color(0, 51, 204));
         btnAltaP.setText("+");
@@ -1208,7 +1206,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnBuscarP.setBackground(new java.awt.Color(255, 204, 25));
+        btnBuscarP.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnBuscarP.setForeground(new java.awt.Color(0, 51, 204));
         btnBuscarP.setText("Buscar");
@@ -1219,7 +1217,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnModificarP.setBackground(new java.awt.Color(255, 204, 25));
+        btnModificarP.setBackground(new java.awt.Color(255, 255, 255));
         btnModificarP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnModificarP.setForeground(new java.awt.Color(0, 51, 204));
         btnModificarP.setText("Modificar");
@@ -1230,7 +1228,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnUltimoP.setBackground(new java.awt.Color(255, 204, 25));
+        btnUltimoP.setBackground(new java.awt.Color(255, 255, 255));
         btnUltimoP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnUltimoP.setForeground(new java.awt.Color(0, 51, 204));
         btnUltimoP.setText(">>");
@@ -1241,7 +1239,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnSiguienteP.setBackground(new java.awt.Color(255, 204, 25));
+        btnSiguienteP.setBackground(new java.awt.Color(255, 255, 255));
         btnSiguienteP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnSiguienteP.setForeground(new java.awt.Color(0, 51, 204));
         btnSiguienteP.setText(">");
@@ -1252,7 +1250,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAnteriorP.setBackground(new java.awt.Color(255, 204, 25));
+        btnAnteriorP.setBackground(new java.awt.Color(255, 255, 255));
         btnAnteriorP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAnteriorP.setForeground(new java.awt.Color(0, 51, 204));
         btnAnteriorP.setText("<");
@@ -1263,7 +1261,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnPrimeroP.setBackground(new java.awt.Color(255, 204, 25));
+        btnPrimeroP.setBackground(new java.awt.Color(255, 255, 255));
         btnPrimeroP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnPrimeroP.setForeground(new java.awt.Color(0, 51, 204));
         btnPrimeroP.setText("<<");
@@ -1451,7 +1449,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        btnAceptarP.setBackground(new java.awt.Color(255, 204, 25));
+        btnAceptarP.setBackground(new java.awt.Color(255, 255, 255));
         btnAceptarP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAceptarP.setForeground(new java.awt.Color(0, 51, 204));
         btnAceptarP.setText("Aceptar");
@@ -1463,7 +1461,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnCancelarP.setBackground(new java.awt.Color(255, 204, 25));
+        btnCancelarP.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelarP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCancelarP.setForeground(new java.awt.Color(0, 51, 204));
         btnCancelarP.setText("Cancelar");
@@ -1577,7 +1575,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        btnAceptarR.setBackground(new java.awt.Color(255, 204, 25));
+        btnAceptarR.setBackground(new java.awt.Color(255, 255, 255));
         btnAceptarR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAceptarR.setForeground(new java.awt.Color(0, 51, 204));
         btnAceptarR.setText("Aceptar");
@@ -1589,7 +1587,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnCancelarR.setBackground(new java.awt.Color(255, 204, 25));
+        btnCancelarR.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelarR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCancelarR.setForeground(new java.awt.Color(0, 51, 204));
         btnCancelarR.setText("Cancelar");
@@ -1620,7 +1618,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        btnPrimeroR.setBackground(new java.awt.Color(255, 204, 25));
+        btnPrimeroR.setBackground(new java.awt.Color(255, 255, 255));
         btnPrimeroR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnPrimeroR.setForeground(new java.awt.Color(0, 51, 204));
         btnPrimeroR.setText("<<");
@@ -1631,7 +1629,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAnteriorR.setBackground(new java.awt.Color(255, 204, 25));
+        btnAnteriorR.setBackground(new java.awt.Color(255, 255, 255));
         btnAnteriorR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAnteriorR.setForeground(new java.awt.Color(0, 51, 204));
         btnAnteriorR.setText("<");
@@ -1642,7 +1640,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnSiguienteR.setBackground(new java.awt.Color(255, 204, 25));
+        btnSiguienteR.setBackground(new java.awt.Color(255, 255, 255));
         btnSiguienteR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnSiguienteR.setForeground(new java.awt.Color(0, 51, 204));
         btnSiguienteR.setText(">");
@@ -1653,7 +1651,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnUltimoR.setBackground(new java.awt.Color(255, 204, 25));
+        btnUltimoR.setBackground(new java.awt.Color(255, 255, 255));
         btnUltimoR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnUltimoR.setForeground(new java.awt.Color(0, 51, 204));
         btnUltimoR.setText(">>");
@@ -1664,7 +1662,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnModificarR.setBackground(new java.awt.Color(255, 204, 25));
+        btnModificarR.setBackground(new java.awt.Color(255, 255, 255));
         btnModificarR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnModificarR.setForeground(new java.awt.Color(0, 51, 204));
         btnModificarR.setText("Modificar");
@@ -1675,7 +1673,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnBuscarR.setBackground(new java.awt.Color(255, 204, 25));
+        btnBuscarR.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnBuscarR.setForeground(new java.awt.Color(0, 51, 204));
         btnBuscarR.setText("Buscar");
@@ -1686,7 +1684,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAltaR.setBackground(new java.awt.Color(255, 204, 25));
+        btnAltaR.setBackground(new java.awt.Color(255, 255, 255));
         btnAltaR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAltaR.setForeground(new java.awt.Color(0, 51, 204));
         btnAltaR.setText("+");
@@ -1697,7 +1695,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnBajaR.setBackground(new java.awt.Color(255, 204, 25));
+        btnBajaR.setBackground(new java.awt.Color(255, 255, 255));
         btnBajaR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnBajaR.setForeground(new java.awt.Color(0, 51, 204));
         btnBajaR.setText("-");
@@ -1708,7 +1706,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnCerrarR.setBackground(new java.awt.Color(255, 204, 25));
+        btnCerrarR.setBackground(new java.awt.Color(255, 255, 255));
         btnCerrarR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCerrarR.setForeground(new java.awt.Color(0, 51, 204));
         btnCerrarR.setText("Cerrar");
@@ -1790,7 +1788,7 @@ public class Inicio extends javax.swing.JFrame {
         pnlAumentos.setAlignmentY(0.0F);
         pnlAumentos.setPreferredSize(new java.awt.Dimension(400, 100));
 
-        btnAñadirAu.setBackground(new java.awt.Color(255, 204, 25));
+        btnAñadirAu.setBackground(new java.awt.Color(255, 255, 255));
         btnAñadirAu.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAñadirAu.setForeground(new java.awt.Color(0, 51, 204));
         btnAñadirAu.setText("Añadir Aumento");
@@ -1801,7 +1799,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnCerrarAu.setBackground(new java.awt.Color(255, 204, 25));
+        btnCerrarAu.setBackground(new java.awt.Color(255, 255, 255));
         btnCerrarAu.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCerrarAu.setForeground(new java.awt.Color(0, 51, 204));
         btnCerrarAu.setText("Cerrar");
@@ -1812,7 +1810,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAumProv.setBackground(new java.awt.Color(255, 204, 25));
+        btnAumProv.setBackground(new java.awt.Color(255, 255, 255));
         btnAumProv.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAumProv.setForeground(new java.awt.Color(0, 51, 204));
         btnAumProv.setText("Aumentar Proveedor");
@@ -1823,7 +1821,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAumRubro.setBackground(new java.awt.Color(255, 204, 25));
+        btnAumRubro.setBackground(new java.awt.Color(255, 255, 255));
         btnAumRubro.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAumRubro.setForeground(new java.awt.Color(0, 51, 204));
         btnAumRubro.setText("Aumentar Rubro");
@@ -2032,13 +2030,13 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(2, 2, 2)
                 .addComponent(pnlSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlVentana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(pnlHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2048,7 +2046,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlVentana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -2076,6 +2074,8 @@ public class Inicio extends javax.swing.JFrame {
         pnlRubros.setVisible(false);
         pnlAumentos.setVisible(false);
         lblVentana.setText("HISTORIAL");
+        
+        
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
@@ -2187,7 +2187,7 @@ public class Inicio extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "debe completar el campo precio de costo");
                     txtPrecioCostoA.requestFocus();
                 }else if(txtPrecioVentaA.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null, "debe completar el campo precio contado");
+                    JOptionPane.showMessageDialog(null, "debe completar el campo precio CONTRAado");
                     txtPrecioVentaA.requestFocus();
                 }else if (txtCodigoA.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null, "debe completar el campo Código");
@@ -2203,7 +2203,7 @@ public class Inicio extends javax.swing.JFrame {
                     int mes = Calendar.getInstance().getTime().getMonth()+1;
                     int dia = Calendar.getInstance().getTime().getDate();
                     String f = año + "-" + mes + "-" + dia;
-                    Consulta = "INSERT INTO "+database+".articulo VALUES ("+ txtIdA.getText()+ ",'"+ txtCodigoA.getText()+ "','" + txtNombreA.getText()+ "',"+ txtPrecioCostoA.getText()+","+ txtPrecioVentaA.getText()+",'"+ f + "',"+ rub_ar[aa]+","+ prov_ar[bb]+")";
+                    Consulta = "INSERT INTO "+DATABASE+".articulo VALUES ("+ txtIdA.getText()+ ",'"+ txtCodigoA.getText()+ "','" + txtNombreA.getText()+ "',"+ txtPrecioCostoA.getText()+","+ txtPrecioVentaA.getText()+",'"+ f + "',"+ rub_ar[aa]+","+ prov_ar[bb]+")";
                     System.out.println(Consulta);
                     sentencia_ar.executeUpdate(Consulta);
                     CargarConsultaArticulos();
@@ -2235,7 +2235,7 @@ public class Inicio extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "debe completar el campo precio de costo");
                         txtPrecioCostoA.requestFocus();
                     }else if(txtPrecioVentaA.getText().isEmpty()){
-                        JOptionPane.showMessageDialog(null, "debe completar el campo precio contado");
+                        JOptionPane.showMessageDialog(null, "debe completar el campo precio CONTRAado");
                         txtPrecioVentaA.requestFocus();
                     }else if (txtCodigoA.getText().isEmpty()){
                         JOptionPane.showMessageDialog(null, "debe completar el campo Código");
@@ -2251,7 +2251,7 @@ public class Inicio extends javax.swing.JFrame {
                         int mes = Calendar.getInstance().getTime().getMonth()+1;
                         int dia = Calendar.getInstance().getTime().getDate();
                         String f = año + "-" + mes + "-" + dia;
-                        Consulta= "UPDATE "+database+".articulo SET nombre_articulo= '" + txtNombreA.getText();
+                        Consulta= "UPDATE "+DATABASE+".articulo SET nombre_articulo= '" + txtNombreA.getText();
                         Consulta += "' , precio_costo =" + txtPrecioCostoA.getText()+ ", precio_venta=" + txtPrecioVentaA.getText();
                         Consulta += ", fecha_actualizacion = '" + f + "', rubro_id_rubro = " + rub_ar[aa] ;
                         Consulta += ", proveedor_id_proveedor = " + prov_ar[bb] + ", codigo_articulo = '" + txtCodigoA.getText() ;
@@ -2296,7 +2296,7 @@ public class Inicio extends javax.swing.JFrame {
             int resp;
             resp= JOptionPane.showConfirmDialog(null, "Realmente desea borrar el articulo");
             if(resp==0){
-                String Consulta= "DELETE FROM "+database+".articulo WHERE id_articulo="+txtIdA.getText();
+                String Consulta= "DELETE FROM "+DATABASE+".articulo WHERE id_articulo="+txtIdA.getText();
                 sentencia_ar.executeUpdate(Consulta);
                 CargarConsultaArticulos();
                 r_ar.last();
@@ -2562,7 +2562,7 @@ try{
         int resp;
         resp= JOptionPane.showConfirmDialog(null, "Realmente desea borrar el proveedor");
         if(resp==0){
-            String Consulta= "DELETE FROM "+database+".proveedor WHERE proveedor.id_proveedor = "+txtIdP.getText();
+            String Consulta= "DELETE FROM "+DATABASE+".proveedor WHERE proveedor.id_proveedor = "+txtIdP.getText();
             sentencia_pr.executeUpdate(Consulta);
             CargarConsultaProveedores();
             r_pr.last();
@@ -2593,7 +2593,7 @@ try{
                 while (aa!= cboLocalidadP.getSelectedIndex()){
                     aa++;
                 }
-            Consulta = "INSERT INTO "+database+".proveedor VALUES ("+ txtIdP.getText()+ ",'"+ txtNombreP.getText()+ "','" +txtCuitP.getText() + "','" + txtDireccionP.getText()+"','"+ txtEmailP.getText()+ "','"+ txtCelularP.getText()+ "'," + prov_pr[aa] +" )";
+            Consulta = "INSERT INTO "+DATABASE+".proveedor VALUES ("+ txtIdP.getText()+ ",'"+ txtNombreP.getText()+ "','" +txtCuitP.getText() + "','" + txtDireccionP.getText()+"','"+ txtEmailP.getText()+ "','"+ txtCelularP.getText()+ "'," + prov_pr[aa] +" )";
             System.out.println(Consulta);
             sentencia_pr.executeUpdate(Consulta);
             System.out.println("1");
@@ -2633,11 +2633,11 @@ try{
                     while (aa != cboLocalidadP.getSelectedIndex()){
                         aa++;
                     }
-                    Consulta= "UPDATE "+database+".proveedor SET nombre_proveedor= '" + txtNombreP.getText()+  "',cuit_proveedor= '"+ txtCuitP.getText() + "',direccion_proveedor= '" + txtDireccionP.getText() + "',email_proveedor= '"+ txtEmailP.getText()+ "', celular_proveedor= '"+ txtCelularP.getText() +"', localidad_id_localidad = "+ prov_pr[aa] + " WHERE id_proveedor =" + txtIdP.getText();
+                    Consulta= "UPDATE "+DATABASE+".proveedor SET nombre_proveedor= '" + txtNombreP.getText()+  "',cuit_proveedor= '"+ txtCuitP.getText() + "',direccion_proveedor= '" + txtDireccionP.getText() + "',email_proveedor= '"+ txtEmailP.getText()+ "', celular_proveedor= '"+ txtCelularP.getText() +"', localidad_id_localidad = "+ prov_pr[aa] + " WHERE id_proveedor =" + txtIdP.getText();
                     System.out.println(Consulta);
                     sentencia_pr.executeUpdate(Consulta);
                     //r = sentencia.executeQuery("SELECT localidad.id_localidades, localidad.nombre_localidad, localidad.id_provincia, provincia.Nombre FROM "+database+".localidad, tienatorresi.provincia WHERE "+database+".localidad.id_provincia = "+database+".provincia.id_provincia ORDER BY localidad.id_localidad");
-                    r_pr = sentencia_pr.executeQuery("SELECT proveedor.id_proveedor, proveedor.nombre_proveedor, proveedor.cuit_proveedor, proveedor.direccion_proveedor, proveedor.email_proveedor, proveedor.celular_proveedor,proveedor.localidad_id_localidad,localidad.nombre_localidad FROM "+database+".localidad, "+database+".proveedor WHERE "+database+".proveedor.localidad_id_localidad = "+database+".localidad.id_localidad ORDER BY proveedor.id_proveedor");
+                    r_pr = sentencia_pr.executeQuery("SELECT proveedor.id_proveedor, proveedor.nombre_proveedor, proveedor.cuit_proveedor, proveedor.direccion_proveedor, proveedor.email_proveedor, proveedor.celular_proveedor,proveedor.localidad_id_localidad,localidad.nombre_localidad FROM "+DATABASE+".localidad, "+DATABASE+".proveedor WHERE "+DATABASE+".proveedor.localidad_id_localidad = "+DATABASE+".localidad.id_localidad ORDER BY proveedor.id_proveedor");
                     BuscarUnRegistroProveedores(txtIdP.getText());
                     CargarDatosProveedores();
                     btnAceptarP.setEnabled(false);
@@ -2798,7 +2798,7 @@ try{
                     txtNombreR.requestFocus();
                 }else{
 
-                    Consulta = "INSERT INTO "+database+".rubro VALUES (" + txtIdR.getText() + " , '" + txtNombreR.getText() + "')";
+                    Consulta = "INSERT INTO "+DATABASE+".rubro VALUES (" + txtIdR.getText() + " , '" + txtNombreR.getText() + "')";
                     System.out.println(Consulta);
                     sentencia_ru.executeUpdate(Consulta);
                     CargarConsultaRubros();
@@ -2828,7 +2828,7 @@ try{
                         txtNombreR.requestFocus();
                     }
                     else{
-                        Consulta= "UPDATE "+database+".rubro SET nombre_rubro= '" + txtNombreR.getText()+ "' WHERE id_rubro =" + txtIdR.getText();
+                        Consulta= "UPDATE "+DATABASE+".rubro SET nombre_rubro= '" + txtNombreR.getText()+ "' WHERE id_rubro =" + txtIdR.getText();
                         System.out.println(Consulta);
                         sentencia_ru.executeUpdate(Consulta);
                         BuscarUnRegistroRubros(txtIdR.getText());
@@ -2911,7 +2911,7 @@ try{
             int resp;
             resp= JOptionPane.showConfirmDialog(null, "Realmente desea borrar el rubro");
             if(resp==0){
-                String Consulta= "DELETE FROM "+database+".rubro WHERE rubro.id_rubro = "+txtIdR.getText();
+                String Consulta= "DELETE FROM "+DATABASE+".rubro WHERE rubro.id_rubro = "+txtIdR.getText();
                 System.out.println(Consulta);
                 sentencia_ru.executeUpdate(Consulta);
                 CargarConsultaRubros();
@@ -2970,10 +2970,10 @@ try{
                         aa++;
                     }
                     if(estado == "Rubro"){
-                        ResRubPro = sentencia_au.executeQuery("SELECT * FROM "+database+".articulo WHERE articulo.rubro_id_rubro = "+rubpro[aa]);
+                        ResRubPro = sentencia_au.executeQuery("SELECT * FROM "+DATABASE+".articulo WHERE articulo.rubro_id_rubro = "+rubpro[aa]);
                     }
                     else if(estado == "Prov"){
-                        ResRubPro = sentencia_au.executeQuery("SELECT * FROM "+database+".articulo WHERE articulo.proveedor_id_proveedor = "+rubpro[aa]);
+                        ResRubPro = sentencia_au.executeQuery("SELECT * FROM "+DATABASE+".articulo WHERE articulo.proveedor_id_proveedor = "+rubpro[aa]);
                     }
                     while(ResRubPro.next()){
                         String ID = ResRubPro.getString("id_articulo");
@@ -2985,10 +2985,10 @@ try{
                         System.out.println(fec);
                         String pre = ResRubPro.getString("precio_venta");
                         System.out.println(pre);
-                        consulta = "INSERT INTO "+database+".historico_precio_articulo VALUES ("+ID+",'"+fec+"',"+pre+")";
+                        consulta = "INSERT INTO "+DATABASE+".historico_precio_articulo VALUES ("+ID+",'"+fec+"',"+pre+")";
                         System.out.println(consulta);
                         sentencia_au1.executeUpdate(consulta);
-                        consulta = "UPDATE "+database+".articulo SET articulo.precio_venta = articulo.precio_venta+(articulo.precio_venta*"+txtAumento.getText()+"/100), articulo.fecha_actualizacion = '"+fec+"' WHERE id_articulo = "+ID+"";
+                        consulta = "UPDATE "+DATABASE+".articulo SET articulo.precio_venta = articulo.precio_venta+(articulo.precio_venta*"+txtAumento.getText()+"/100), articulo.fecha_actualizacion = '"+fec+"' WHERE id_articulo = "+ID+"";
                         System.out.println(consulta);
                         sentencia_au1.executeUpdate(consulta);
                     }
@@ -3006,10 +3006,10 @@ try{
                         aa++;
                     }
                     if(estado == "Rubro"){
-                        ResRubPro = sentencia_au.executeQuery("SELECT * FROM "+database+".articulo WHERE articulo.rubro_id_rubro = "+rubpro[aa]);
+                        ResRubPro = sentencia_au.executeQuery("SELECT * FROM "+DATABASE+".articulo WHERE articulo.rubro_id_rubro = "+rubpro[aa]);
                     }
                     else if(estado == "Prov"){
-                        ResRubPro = sentencia_au.executeQuery("SELECT * FROM "+database+".articulo WHERE articulo.proveedor_id_proveedor = "+rubpro[aa]);
+                        ResRubPro = sentencia_au.executeQuery("SELECT * FROM "+DATABASE+".articulo WHERE articulo.proveedor_id_proveedor = "+rubpro[aa]);
                     }
                     while(ResRubPro.next()){
                         String ID = ResRubPro.getString("id_articulo");
@@ -3021,10 +3021,10 @@ try{
                         System.out.println(fec);
                         String pre = ResRubPro.getString("precio_venta");
                         System.out.println(pre);
-                        consulta = "UPDATE "+database+".historico_precio_articulo SET historico_precio_articulo.precio_venta= " + pre + " WHERE historico_precio_articulo.fecha = '"+fec+"' and historico_precio_articulo.id_articulo = "+ID;
+                        consulta = "UPDATE "+DATABASE+".historico_precio_articulo SET historico_precio_articulo.precio_venta= " + pre + " WHERE historico_precio_articulo.fecha = '"+fec+"' and historico_precio_articulo.id_articulo = "+ID;
                         System.out.println(consulta);
                         sentencia_au1.executeUpdate(consulta);
-                        consulta = "UPDATE "+database+".articulo SET articulo.precio_venta = articulo.precio_venta+(articulo.precio_venta*"+txtAumento.getText()+"/100), articulo.fecha_actualizacion = '"+fec+"' WHERE id_articulo = "+ID+"";
+                        consulta = "UPDATE "+DATABASE+".articulo SET articulo.precio_venta = articulo.precio_venta+(articulo.precio_venta*"+txtAumento.getText()+"/100), articulo.fecha_actualizacion = '"+fec+"' WHERE id_articulo = "+ID+"";
                         System.out.println(consulta);
                         sentencia_au1.executeUpdate(consulta);
                     }

@@ -8,7 +8,6 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-
 public class BuscarArticulos extends javax.swing.JFrame {
 
     public static Connection conexion;
@@ -29,7 +28,7 @@ public class BuscarArticulos extends javax.swing.JFrame {
     public static void PrepararBaseDeDatos(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection(Inicio.url, Inicio.usuario, Inicio.cont);
+            conexion = DriverManager.getConnection(Inicio.URL, Inicio.USUARIO, Inicio.CONTRA);
             if (conexion!=null){
                 System.out.println("Conexion Exitosa");}
         }catch (Exception e){
@@ -46,7 +45,7 @@ public class BuscarArticulos extends javax.swing.JFrame {
             cboRubro.removeAllItems();
             prov_ar[0]= 0;
             cboRubro.addItem("Todos");
-            ResProv = sentencia.executeQuery("SELECT * FROM "+Inicio.database+".rubro ORDER BY "+Inicio.database+".rubro.id_rubro");
+            ResProv = sentencia.executeQuery("SELECT * FROM "+Inicio.DATABASE+".rubro ORDER BY "+Inicio.DATABASE+".rubro.id_rubro");
             ResProv.beforeFirst();
             while(ResProv.next()){
                 cboRubro.addItem(ResProv.getString("nombre_rubro"));
@@ -112,7 +111,7 @@ public class BuscarArticulos extends javax.swing.JFrame {
                 while(i!= cboRubro.getSelectedIndex()){
                     i++;
                 }
-                r_ar = sentencia.executeQuery("SELECT id_articulo, nombre_articulo, codigo_articulo, precio_costo, precio_venta, fecha_actualizacion, id_rubro FROM "+Inicio.database+".rubro, "+Inicio.database+".articulo WHERE articulo.rubro_id_rubro = rubro.id_rubro AND articulo.rubro_id_rubro = "+prov_ar[i]+" ORDER BY articulo.id_articulo");
+                r_ar = sentencia.executeQuery("SELECT id_articulo, nombre_articulo, codigo_articulo, precio_costo, precio_venta, fecha_actualizacion, id_rubro FROM "+Inicio.DATABASE+".rubro, "+Inicio.DATABASE+".articulo WHERE articulo.rubro_id_rubro = rubro.id_rubro AND articulo.rubro_id_rubro = "+prov_ar[i]+" ORDER BY articulo.id_articulo");
                 
             }
             CargarDatosBA();
@@ -180,11 +179,11 @@ tblLocalidad = new javax.swing.JTable(){
         pnlBuscarArticulos.setBackground(new java.awt.Color(0, 51, 204));
 
         lblNombreBA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblNombreBA.setForeground(new java.awt.Color(255, 204, 25));
+        lblNombreBA.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreBA.setText("Nombre");
 
         lblRubroBA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblRubroBA.setForeground(new java.awt.Color(255, 204, 25));
+        lblRubroBA.setForeground(new java.awt.Color(255, 255, 255));
         lblRubroBA.setText("Rubro");
 
         txtNombreBA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -201,7 +200,7 @@ tblLocalidad = new javax.swing.JTable(){
             }
         });
 
-        btnSeleccionarBA.setBackground(new java.awt.Color(255, 204, 25));
+        btnSeleccionarBA.setBackground(new java.awt.Color(255, 255, 255));
         btnSeleccionarBA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnSeleccionarBA.setForeground(new java.awt.Color(0, 51, 204));
         btnSeleccionarBA.setText("Seleccionar");

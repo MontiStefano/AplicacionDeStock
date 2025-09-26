@@ -28,7 +28,7 @@ public class BuscarProveedores extends javax.swing.JFrame {
     public static void PrepararBaseDeDatos(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection(Inicio.url, Inicio.usuario, Inicio.cont);
+            conexion = DriverManager.getConnection(Inicio.URL, Inicio.USUARIO, Inicio.CONTRA);
             if (conexion!=null){
                 System.out.println("Conexion Exitosa");}
         }catch (Exception e){
@@ -45,7 +45,7 @@ public class BuscarProveedores extends javax.swing.JFrame {
             cboLocalidadBP.removeAllItems();
             prov_pr[0]= 0;
             cboLocalidadBP.addItem("Todas");
-            ResProv = sentencia.executeQuery("SELECT * FROM "+Inicio.database+".localidad ORDER BY "+Inicio.database+".localidad.nombre_localidad");
+            ResProv = sentencia.executeQuery("SELECT * FROM "+Inicio.DATABASE+".localidad ORDER BY "+Inicio.DATABASE+".localidad.nombre_localidad");
             ResProv.beforeFirst();
             while(ResProv.next()){
                 cboLocalidadBP.addItem(ResProv.getString("nombre_localidad"));
@@ -106,7 +106,7 @@ public class BuscarProveedores extends javax.swing.JFrame {
                 while(i!= cboLocalidadBP.getSelectedIndex()){
                     i++;
                 }
-                r_pr= sentencia.executeQuery("SELECT id_proveedor, nombre_proveedor, direccion_proveedor, cuit_proveedor, email_proveedor, celular_proveedor, id_localidad FROM "+Inicio.database+".localidad, "+Inicio.database+".proveedor WHERE proveedor.localidad_id_localidad = localidad.id_localidad AND proveedor.localidad_id_localidad = "+prov_pr[i]+" ORDER BY proveedor.id_proveedor");
+                r_pr= sentencia.executeQuery("SELECT id_proveedor, nombre_proveedor, direccion_proveedor, cuit_proveedor, email_proveedor, celular_proveedor, id_localidad FROM "+Inicio.DATABASE+".localidad, "+Inicio.DATABASE+".proveedor WHERE proveedor.localidad_id_localidad = localidad.id_localidad AND proveedor.localidad_id_localidad = "+prov_pr[i]+" ORDER BY proveedor.id_proveedor");
                 
             }
             CargarDatosBP();
@@ -149,11 +149,11 @@ tblLocalidad = new javax.swing.JTable(){
         pnlBuscarProveedor.setBackground(new java.awt.Color(0, 51, 204));
 
         lblNombreBP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblNombreBP.setForeground(new java.awt.Color(255, 204, 25));
+        lblNombreBP.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreBP.setText("Nombre");
 
         lblLocalidadBP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblLocalidadBP.setForeground(new java.awt.Color(255, 204, 25));
+        lblLocalidadBP.setForeground(new java.awt.Color(255, 255, 255));
         lblLocalidadBP.setText("Localidad");
 
         txtNombreBP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -170,7 +170,7 @@ tblLocalidad = new javax.swing.JTable(){
             }
         });
 
-        btnSeleccionarBP.setBackground(new java.awt.Color(255, 204, 25));
+        btnSeleccionarBP.setBackground(new java.awt.Color(255, 255, 255));
         btnSeleccionarBP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnSeleccionarBP.setForeground(new java.awt.Color(0, 51, 204));
         btnSeleccionarBP.setText("Seleccionar");

@@ -27,7 +27,7 @@ public class BuscarRubros extends javax.swing.JFrame {
     public static void PrepararBaseDeDatos(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection(Inicio.url, Inicio.usuario, Inicio.cont);
+            conexion = DriverManager.getConnection(Inicio.URL, Inicio.USUARIO, Inicio.CONTRA);
             if (conexion!=null){
                 System.out.println("Conexion Exitosa");}
         }catch (Exception e){
@@ -41,7 +41,7 @@ public class BuscarRubros extends javax.swing.JFrame {
     
     public void CargarConsultaBR(){
          try{
-             r_ru= sentencia.executeQuery("SELECT id_rubro, nombre_rubro FROM "+Inicio.database+".rubro ORDER BY id_rubro");
+             r_ru= sentencia.executeQuery("SELECT id_rubro, nombre_rubro FROM "+Inicio.DATABASE+".rubro ORDER BY id_rubro");
                      
          }catch(Exception e){
              System.out.println("Error CargarConsulta" + e);
@@ -102,7 +102,7 @@ tblLocalidad = new javax.swing.JTable(){
         pnlBuscarRubros.setBackground(new java.awt.Color(0, 51, 204));
 
         lblNombreBR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblNombreBR.setForeground(new java.awt.Color(255, 204, 25));
+        lblNombreBR.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreBR.setText("Nombre");
 
         txtNombreBR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -112,7 +112,7 @@ tblLocalidad = new javax.swing.JTable(){
             }
         });
 
-        btnSeleccionarBR.setBackground(new java.awt.Color(255, 204, 25));
+        btnSeleccionarBR.setBackground(new java.awt.Color(255, 255, 255));
         btnSeleccionarBR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnSeleccionarBR.setForeground(new java.awt.Color(0, 51, 204));
         btnSeleccionarBR.setText("Seleccionar");
