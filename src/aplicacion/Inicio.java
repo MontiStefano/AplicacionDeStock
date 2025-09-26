@@ -193,18 +193,20 @@ public class Inicio extends javax.swing.JFrame {
                 i++;
             }
             cboProveedorA.setSelectedIndex(i);
+            
             In = r_ar.getInt ("rubro_id_rubro");
             while (In != rub_ar[j]){
                 j++;
             }
             cboRubroA.setSelectedIndex(j);
+            
         }catch (Exception e){
             System.out.println("Error en cargarDatosArticulos: " + e);
         }
     }
     
     public static void BuscarUnRegistroArticulos (String id){
-        int In;
+        int i=0, j=0, In;
         try{
             r_ar = sentencia_ar.executeQuery("SELECT articulo.id_articulo, articulo.nombre_articulo, articulo.precio_costo, articulo.precio_venta, articulo.fecha_actualizacion, articulo.rubro_id_rubro, articulo.proveedor_id_proveedor, articulo.codigo_articulo, proveedor.nombre_proveedor, rubro.nombre_rubro FROM "+DATABASE+".articulo, "+DATABASE+".proveedor, "+DATABASE+".rubro WHERE "+DATABASE+".articulo.rubro_id_rubro = "+DATABASE+".rubro.id_rubro AND "+DATABASE+".articulo.proveedor_id_proveedor = "+DATABASE+".proveedor.id_proveedor ORDER BY "+DATABASE+".articulo.id_articulo");
             r_ar.beforeFirst();
@@ -215,12 +217,16 @@ public class Inicio extends javax.swing.JFrame {
                 }
             }
             In = r_ar.getInt ("proveedor_id_proveedor");
-            
-            cboProveedorA.setSelectedIndex(In);
+            while (In != prov_ar[i]){
+                i++;
+            }
+            cboProveedorA.setSelectedIndex(i);
             
             In = r_ar.getInt ("rubro_id_rubro");
-            
-            cboRubroA.setSelectedIndex(In);
+            while (In != rub_ar[j]){
+                j++;
+            }
+            cboRubroA.setSelectedIndex(j);
         }
         catch (Exception e){
         System.out.println("error Buscar Un Registro Articulos: "+e);
@@ -755,7 +761,6 @@ public class Inicio extends javax.swing.JFrame {
         lblVentana.setForeground(new java.awt.Color(255, 255, 255));
         lblVentana.setText("ARTICULOS");
 
-        btnCerrarA.setBackground(new java.awt.Color(255, 255, 255));
         btnCerrarA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCerrarA.setForeground(new java.awt.Color(0, 51, 204));
         btnCerrarA.setText("Cerrar");
@@ -766,7 +771,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnBajaA.setBackground(new java.awt.Color(255, 255, 255));
         btnBajaA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnBajaA.setForeground(new java.awt.Color(0, 51, 204));
         btnBajaA.setText("-");
@@ -777,7 +781,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAltaA.setBackground(new java.awt.Color(255, 255, 255));
         btnAltaA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAltaA.setForeground(new java.awt.Color(0, 51, 204));
         btnAltaA.setText("+");
@@ -788,7 +791,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnBuscar1A.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscar1A.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnBuscar1A.setForeground(new java.awt.Color(0, 51, 204));
         btnBuscar1A.setText("Buscar");
@@ -799,7 +801,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnModificarA.setBackground(new java.awt.Color(255, 255, 255));
         btnModificarA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnModificarA.setForeground(new java.awt.Color(0, 51, 204));
         btnModificarA.setText("Modificar");
@@ -810,7 +811,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnUltimoA.setBackground(new java.awt.Color(255, 255, 255));
         btnUltimoA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnUltimoA.setForeground(new java.awt.Color(0, 51, 204));
         btnUltimoA.setText(">>");
@@ -821,7 +821,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnSiguienteA.setBackground(new java.awt.Color(255, 255, 255));
         btnSiguienteA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnSiguienteA.setForeground(new java.awt.Color(0, 51, 204));
         btnSiguienteA.setText(">");
@@ -832,7 +831,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAnteriorA.setBackground(new java.awt.Color(255, 255, 255));
         btnAnteriorA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAnteriorA.setForeground(new java.awt.Color(0, 51, 204));
         btnAnteriorA.setText("<");
@@ -843,7 +841,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnPrimeroA.setBackground(new java.awt.Color(255, 255, 255));
         btnPrimeroA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnPrimeroA.setForeground(new java.awt.Color(0, 51, 204));
         btnPrimeroA.setText("<<");
@@ -1104,7 +1101,6 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        btnAceptarA.setBackground(new java.awt.Color(255, 255, 255));
         btnAceptarA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAceptarA.setForeground(new java.awt.Color(0, 51, 204));
         btnAceptarA.setText("Aceptar");
@@ -1116,7 +1112,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnCancelarA.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelarA.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCancelarA.setForeground(new java.awt.Color(0, 51, 204));
         btnCancelarA.setText("Cancelar");
@@ -1173,7 +1168,6 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        btnCerrarP.setBackground(new java.awt.Color(255, 255, 255));
         btnCerrarP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCerrarP.setForeground(new java.awt.Color(0, 51, 204));
         btnCerrarP.setText("Cerrar");
@@ -1184,7 +1178,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnEliminarP.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminarP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnEliminarP.setForeground(new java.awt.Color(0, 51, 204));
         btnEliminarP.setText("-");
@@ -1195,7 +1188,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAltaP.setBackground(new java.awt.Color(255, 255, 255));
         btnAltaP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAltaP.setForeground(new java.awt.Color(0, 51, 204));
         btnAltaP.setText("+");
@@ -1206,7 +1198,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnBuscarP.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnBuscarP.setForeground(new java.awt.Color(0, 51, 204));
         btnBuscarP.setText("Buscar");
@@ -1217,7 +1208,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnModificarP.setBackground(new java.awt.Color(255, 255, 255));
         btnModificarP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnModificarP.setForeground(new java.awt.Color(0, 51, 204));
         btnModificarP.setText("Modificar");
@@ -1228,7 +1218,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnUltimoP.setBackground(new java.awt.Color(255, 255, 255));
         btnUltimoP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnUltimoP.setForeground(new java.awt.Color(0, 51, 204));
         btnUltimoP.setText(">>");
@@ -1239,7 +1228,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnSiguienteP.setBackground(new java.awt.Color(255, 255, 255));
         btnSiguienteP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnSiguienteP.setForeground(new java.awt.Color(0, 51, 204));
         btnSiguienteP.setText(">");
@@ -1250,7 +1238,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAnteriorP.setBackground(new java.awt.Color(255, 255, 255));
         btnAnteriorP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAnteriorP.setForeground(new java.awt.Color(0, 51, 204));
         btnAnteriorP.setText("<");
@@ -1261,7 +1248,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnPrimeroP.setBackground(new java.awt.Color(255, 255, 255));
         btnPrimeroP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnPrimeroP.setForeground(new java.awt.Color(0, 51, 204));
         btnPrimeroP.setText("<<");
@@ -1449,7 +1435,6 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        btnAceptarP.setBackground(new java.awt.Color(255, 255, 255));
         btnAceptarP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAceptarP.setForeground(new java.awt.Color(0, 51, 204));
         btnAceptarP.setText("Aceptar");
@@ -1461,7 +1446,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnCancelarP.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelarP.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCancelarP.setForeground(new java.awt.Color(0, 51, 204));
         btnCancelarP.setText("Cancelar");
@@ -1575,7 +1559,6 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        btnAceptarR.setBackground(new java.awt.Color(255, 255, 255));
         btnAceptarR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAceptarR.setForeground(new java.awt.Color(0, 51, 204));
         btnAceptarR.setText("Aceptar");
@@ -1587,7 +1570,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnCancelarR.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelarR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCancelarR.setForeground(new java.awt.Color(0, 51, 204));
         btnCancelarR.setText("Cancelar");
@@ -1618,7 +1600,6 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        btnPrimeroR.setBackground(new java.awt.Color(255, 255, 255));
         btnPrimeroR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnPrimeroR.setForeground(new java.awt.Color(0, 51, 204));
         btnPrimeroR.setText("<<");
@@ -1629,7 +1610,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAnteriorR.setBackground(new java.awt.Color(255, 255, 255));
         btnAnteriorR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAnteriorR.setForeground(new java.awt.Color(0, 51, 204));
         btnAnteriorR.setText("<");
@@ -1640,7 +1620,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnSiguienteR.setBackground(new java.awt.Color(255, 255, 255));
         btnSiguienteR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnSiguienteR.setForeground(new java.awt.Color(0, 51, 204));
         btnSiguienteR.setText(">");
@@ -1651,7 +1630,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnUltimoR.setBackground(new java.awt.Color(255, 255, 255));
         btnUltimoR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnUltimoR.setForeground(new java.awt.Color(0, 51, 204));
         btnUltimoR.setText(">>");
@@ -1662,7 +1640,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnModificarR.setBackground(new java.awt.Color(255, 255, 255));
         btnModificarR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnModificarR.setForeground(new java.awt.Color(0, 51, 204));
         btnModificarR.setText("Modificar");
@@ -1673,7 +1650,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnBuscarR.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnBuscarR.setForeground(new java.awt.Color(0, 51, 204));
         btnBuscarR.setText("Buscar");
@@ -1684,7 +1660,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAltaR.setBackground(new java.awt.Color(255, 255, 255));
         btnAltaR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAltaR.setForeground(new java.awt.Color(0, 51, 204));
         btnAltaR.setText("+");
@@ -1695,7 +1670,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnBajaR.setBackground(new java.awt.Color(255, 255, 255));
         btnBajaR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnBajaR.setForeground(new java.awt.Color(0, 51, 204));
         btnBajaR.setText("-");
@@ -1706,7 +1680,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnCerrarR.setBackground(new java.awt.Color(255, 255, 255));
         btnCerrarR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCerrarR.setForeground(new java.awt.Color(0, 51, 204));
         btnCerrarR.setText("Cerrar");
@@ -1788,7 +1761,6 @@ public class Inicio extends javax.swing.JFrame {
         pnlAumentos.setAlignmentY(0.0F);
         pnlAumentos.setPreferredSize(new java.awt.Dimension(400, 100));
 
-        btnAñadirAu.setBackground(new java.awt.Color(255, 255, 255));
         btnAñadirAu.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAñadirAu.setForeground(new java.awt.Color(0, 51, 204));
         btnAñadirAu.setText("Añadir Aumento");
@@ -1799,7 +1771,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnCerrarAu.setBackground(new java.awt.Color(255, 255, 255));
         btnCerrarAu.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCerrarAu.setForeground(new java.awt.Color(0, 51, 204));
         btnCerrarAu.setText("Cerrar");
@@ -1810,7 +1781,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAumProv.setBackground(new java.awt.Color(255, 255, 255));
         btnAumProv.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAumProv.setForeground(new java.awt.Color(0, 51, 204));
         btnAumProv.setText("Aumentar Proveedor");
@@ -1821,7 +1791,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnAumRubro.setBackground(new java.awt.Color(255, 255, 255));
         btnAumRubro.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnAumRubro.setForeground(new java.awt.Color(0, 51, 204));
         btnAumRubro.setText("Aumentar Rubro");

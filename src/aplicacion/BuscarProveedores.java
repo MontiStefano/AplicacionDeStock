@@ -68,7 +68,7 @@ public class BuscarProveedores extends javax.swing.JFrame {
     
     public void CargarDatosBP(){
         DefaultTableModel table =(DefaultTableModel) tblProveedoresBP.getModel();
-        int i=0 , a=0;
+        int i, a;
         a = table.getRowCount();
         for(i=1; i<=a; i++){
             table.removeRow(0);
@@ -95,7 +95,7 @@ public class BuscarProveedores extends javax.swing.JFrame {
   private void CargarConsultaCategoriaBP(){
         try{
             DefaultTableModel table = (DefaultTableModel) tblProveedoresBP.getModel();
-            int i=1, a=0;
+            int i=1, a;
             a = table.getRowCount();
             for(int q=1; q<=a; q++){
                 table.removeRow(0);

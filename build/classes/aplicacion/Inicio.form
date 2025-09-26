@@ -387,9 +387,6 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnCerrarA">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -408,9 +405,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBajaA">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -429,9 +423,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAltaA">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -450,9 +441,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBuscar1A">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -471,9 +459,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnModificarA">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -492,9 +477,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnUltimoA">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -513,9 +495,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnSiguienteA">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -534,9 +513,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAnteriorA">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -555,9 +531,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnPrimeroA">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1029,9 +1002,6 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnAceptarA">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1051,9 +1021,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnCancelarA">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1166,9 +1133,6 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnCerrarP">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1187,9 +1151,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnEliminarP">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1208,9 +1169,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAltaP">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1229,9 +1187,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBuscarP">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1250,9 +1205,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnModificarP">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1271,9 +1223,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnUltimoP">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1292,9 +1241,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnSiguienteP">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1313,9 +1259,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAnteriorP">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1334,9 +1277,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnPrimeroP">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1659,9 +1599,6 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnAceptarP">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1681,9 +1618,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnCancelarP">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1876,9 +1810,6 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnAceptarR">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1898,9 +1829,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnCancelarR">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1968,9 +1896,6 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnPrimeroR">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -1989,9 +1914,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAnteriorR">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -2010,9 +1932,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnSiguienteR">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -2031,9 +1950,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnUltimoR">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -2052,9 +1968,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnModificarR">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -2073,9 +1986,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBuscarR">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -2094,9 +2004,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAltaR">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -2115,9 +2022,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBajaR">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -2136,9 +2040,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnCerrarR">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -2210,9 +2111,6 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btnA&#xf1;adirAu">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="0"/>
                 </Property>
@@ -2228,9 +2126,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnCerrarAu">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="0"/>
                 </Property>
@@ -2271,9 +2166,6 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnAumProv">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
@@ -2289,9 +2181,6 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAumRubro">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>

@@ -100,8 +100,8 @@ public class BuscarArticulos extends javax.swing.JFrame {
     private void CargarConsultaCategoria(){
         try{
             DefaultTableModel table = (DefaultTableModel) tblArticulos.getModel();
-            int i=1, a=0;
-            a = table.getRowCount();
+            int i=1;
+            int a = table.getRowCount();
             for(int q=1; q<=a; q++){
                 table.removeRow(0);
             }
@@ -150,7 +150,11 @@ tblLocalidad = new javax.swing.JTable(){
             Inicio.txtPrecioVentaA.setText(precio_venta);
             Inicio.txtFechaActualizacionA.setText(fecha_actualizacion);
             int aa= Integer.parseInt(rubro);
-            Inicio.cboRubroA.setSelectedIndex(aa);
+            int i=0;
+            while(aa != Inicio.rub_ar[i]){
+                i++;
+            }
+            Inicio.cboRubroA.setSelectedIndex(i);
             System.out.println("rubro seleccionado: index " + aa);
             this.setVisible(false);
         } catch (Exception e){
